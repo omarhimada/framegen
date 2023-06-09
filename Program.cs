@@ -34,7 +34,7 @@ for (int frame = 0; frame < maxFrames; frame++)
     {
         using (Graphics g = Graphics.FromImage(b))
         {
-            int w = 8, h = 8;
+            int w = 2, h = 2;
             int pixel = 0;
 
             for (int row = 0; row < dimensionH; row += h)
