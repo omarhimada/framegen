@@ -45,24 +45,6 @@ for (int frame = 0; frame < maxFrames; frame++)
                     pixel++;
                 }
             }
-
-            // Black left side
-            for (int row = 0; row < dimensionH; row += h / 2)
-            {
-                g.FillRectangle(black, dimensionW - 1, row, w / 2, h / 2);
-            }
-
-            // Black right side
-            for (int row = dimensionH - 1; row >= 0; row -= h / 2)
-            {
-                g.FillRectangle(black, dimensionW - 1, row, w / 2, h / 2);
-            }
-
-            // Black bottom
-            for (int col = 0; col < dimensionW; col += w / 2)
-            {
-                g.FillRectangle(black, col, dimensionH - 1, w / 2, h / 2);
-            }
         }
 
         b.Save(outputPath + @"\framegen" + frame.ToString().PadLeft(9, '0') + @".png", ImageFormat.Png);
