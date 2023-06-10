@@ -39,6 +39,7 @@ for (int frame = 0; frame < maxFrames; frame++)
         {
             // e.g.: "Black|#000000"
             string c = colors[random.Next(colors.Count)].Split("|")[1];
+            map[i] = HexToBrush(c);
         }
         else
         {
@@ -59,8 +60,8 @@ for (int frame = 0; frame < maxFrames; frame++)
                     b = random.Next(255);
                 }
             }
+            map[i] = new SolidBrush(Color.FromArgb(255, r, g, b));
         }
-        map[i] = HexToBrush(c);
     }
     Console.WriteLine("Generated " + map.Count + " SolidBrush colors for frame " + frame + ".");
 
