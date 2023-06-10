@@ -46,21 +46,28 @@ for (int frame = 0; frame < maxFrames; frame++)
             int r = random.Next(255);
             int g = random.Next(255);
             int b = random.Next(255);
+
+            // Reduce extremes
             while (r > 199) r = random.Next(255);
             while (g > 199) g = random.Next(255);
-            while (b > 199) b = random.Next(255);
-            while (r > 199 && b > 199 && g < 133)
+            while (b > 222) b = random.Next(255);
+
+            // Reduce magenta
+            while (r > 166 && b > 166 && g < 133)
             {
                 r = random.Next(255);
                 g = random.Next(255);
                 b = random.Next(255);
             }
+
+            // Lighten
             while (r < 66 && g < 66 && b < 66)
             {
                 r = random.Next(255);
                 g = random.Next(255);
                 b = random.Next(255);
             }
+
             map[i] = new SolidBrush(Color.FromArgb(255, r, g, b));
         }
     }
@@ -70,7 +77,7 @@ for (int frame = 0; frame < maxFrames; frame++)
     {
         using (Graphics g = Graphics.FromImage(b))
         {
-            int w = 2, h = 2;
+            int w = 4, h = 4;
             int pixel = 0;
 
             for (int row = 0; row < dimensionH; row += h)
