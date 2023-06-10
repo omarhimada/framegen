@@ -24,7 +24,7 @@ try
 {
     useJson = Console.ReadLine().Trim().ToLowerInvariant()[0] == 'y';
 }
-catch (Exception e)
+catch (Exception)
 {
     Console.WriteLine("Invalid input. Defaulting to false.");
 }
@@ -46,19 +46,20 @@ for (int frame = 0; frame < maxFrames; frame++)
             int r = random.Next(255);
             int g = random.Next(255);
             int b = random.Next(255);
-
-            if (g > 200)
+            while (r > 199) r = random.Next(255);
+            while (g > 199) g = random.Next(255);
+            while (b > 199) b = random.Next(255);
+            while (r > 199 && b > 199 && g < 133)
             {
-                while (g > 200) g = random.Next(255);
+                r = random.Next(255);
+                g = random.Next(255);
+                b = random.Next(255);
             }
-            else if (r > 200 && b > 200 && g < 50)
+            while (r < 66 && g < 66 && b < 66)
             {
-                while (r > 200 && b > 200 && g < 50)
-                {
-                    r = random.Next(255);
-                    g = random.Next(255);
-                    b = random.Next(255);
-                }
+                r = random.Next(255);
+                g = random.Next(255);
+                b = random.Next(255);
             }
             map[i] = new SolidBrush(Color.FromArgb(255, r, g, b));
         }
