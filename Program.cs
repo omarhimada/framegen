@@ -61,7 +61,7 @@ for (int frame = 0; frame < maxFrames; frame++)
             }
 
             // Lighten
-            while (r < 66 && g < 66 && b < 66)
+            while (r < 6 && g < 6 && b < 6)
             {
                 r = random.Next(255);
                 g = random.Next(255);
