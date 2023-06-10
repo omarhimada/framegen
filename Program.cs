@@ -18,7 +18,7 @@ DirectoryInfo _ = Directory.CreateDirectory(outputPath);
 
 SolidBrush black = new(Color.FromArgb(255, 0, 0, 0));
 
-Console.WriteLine("Use colors.json? (y/n)")
+Console.WriteLine("Use colors.json? (y/n)");
 bool useJson = false;
 try
 {
