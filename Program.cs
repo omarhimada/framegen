@@ -18,14 +18,48 @@ DirectoryInfo _ = Directory.CreateDirectory(outputPath);
 
 SolidBrush black = new(Color.FromArgb(255, 0, 0, 0));
 
-List<string> colors = Load().Colors;
+Console.WriteLine("Use colors.json? (y/n)")
+bool useJson = false;
+try
+{
+    useJson = Console.ReadLine().Trim().ToLowerInvariant()[0] == 'y';
+}
+catch (Exception e)
+{
+    Console.WriteLine("Invalid input. Defaulting to false.");
+}
+
+List<string> colors = useJson ? Load().Colors : new List<string>();
 
 for (int frame = 0; frame < maxFrames; frame++)
 {
     for (int i = 0; i < (dimensionW * dimensionH); i++)
     {
-        // e.g.: "Black|#000000"
-        string c = colors[random.Next(colors.Count)].Split("|")[1];
+        if (useJson)
+        {
+            // e.g.: "Black|#000000"
+            string c = colors[random.Next(colors.Count)].Split("|")[1];
+        }
+        else
+        {
+            int r = random.Next(255);
+            int g = random.Next(255);
+            int b = random.Next(255);
+
+            if (g > 200)
+            {
+                while (g > 200) g = random.Next(255);
+            }
+            else if (r > 200 && b > 200 && g < 50)
+            {
+                while (r > 200 && b > 200 && g < 50)
+                {
+                    r = random.Next(255);
+                    g = random.Next(255);
+                    b = random.Next(255);
+                }
+            }
+        }
         map[i] = HexToBrush(c);
     }
     Console.WriteLine("Generated " + map.Count + " SolidBrush colors for frame " + frame + ".");
